@@ -5,7 +5,7 @@
 /**
  * main - The main determines if a n is positive, negative or zero.
  *
- * Return: Always 0 (Success)
+ * Return: Always 0.
  */
 int main(void)
 {
