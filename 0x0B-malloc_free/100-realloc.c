@@ -3,37 +3,44 @@
 #include <stdlib.h>
 #include <string.h>
 /**
- * *_realloc - reallocate memory size function
- * @ptr: pointer to address of old memory location
- * @old_size: unsigned int type of old memory size
- * @new_size: unsigned int type for new memory size
- * Return:  return pointer to array
+ * argstostr - prints args
+ * @ac: takes in width of grid
+ * @av: height of grid
+ * Return: the args one line at a time
  */
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+char *argstostr(int ac, char **av)
 {
-	char *s;
+	char *str;
+	int count = 0, a = 0, b = 0, c = 0;
 
-	if (new_size > old_size)
+	if (ac == 0 || av == NULL)
+		return (NULL);
+	while (a < ac)
 	{
-		s = malloc(new_size);
-		free(ptr);
-		return (s);
+		b = 0;
+		while (av[a][b] != '\0')
+		{
+			count++;
+			b++;
+		}
+		a++;
 	}
-	if (new_size == old_size)
+	count = count + ac + 1;
+	str = malloc(sizeof(char) * count);
+	if (str == NULL)
 	{
-		return (ptr);
-	}
-	if (ptr == NULL)
-	{
-		s = malloc(new_size);
-		free(ptr);
-		return (s);
-	}
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
 		return (NULL);
 	}
-	return (ptr);
+	for (a = 0; a < ac; a++)
+	{
+		for (b = 0; av[a][b] != '\0'; b++)
+		{
+			str[c] = av[a][b];
+			c++;
+		}
+		str[c] = '\n';
+		c++;
+	}
+	return (str);
 }
